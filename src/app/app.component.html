@@ -1,21 +1,21 @@
 <app-header></app-header>
 <main class="main">
-  <div class="">
-    <ul id="users">
-      @for (user of users; track $index) {
-      <li id="{{ user.id }}">
-        <app-user
-          [id]="user.id"
-          [avatar]="user.avatar"
-          [name]="user.name"
-          (select)="onSelectUser($event)"
-        />
-      </li>
-      }
-    </ul>
-  </div>
+  <ul id="users">
+    @for (user of users; track user.id) {
+    <li id="{{ user.id }}">
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (select)="onSelectUser($event)"
+      />
+    </li>
+    }
+  </ul>
 
-  <app-tasks [name]="selectedUser.name" />
-
+  @if (selectedUser) {
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
+  }@else {
+  <p id="fallback">Select a user to see a task</p>
+  }
 </main>
 <router-outlet />

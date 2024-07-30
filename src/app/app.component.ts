@@ -15,11 +15,10 @@ import { TasksComponent } from './tasks/tasks.component';
 export class AppComponent {
   title = 'easy-task-app';
   users = DUMMY_USERS;
-  selectedUserId = 'u1';
-  name?: string;
+  selectedUserId?: string;
 
-  get selectedUser(){
-    return this.users.find((user)=>user.id===this.selectedUserId)!;
+  get selectedUser() {
+    return this.users.find((user) => user.id === this.selectedUserId);
   }
 
   onSelectUser(id: string) {
